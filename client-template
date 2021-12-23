@@ -1,0 +1,10 @@
+[Interface]
+PrivateKey = CLIENT_PRIVATEKEY
+Address = CLIENT_IPADDRESS/32
+# 如果你的内网有自建的 DNS 服务, 可以在这里指定, 比如:
+#DNS = 192.168.1.117
+[Peer]
+PublicKey = PUBLICKEY
+PresharedKey = CLIENT_PRESHAREDKEY
+AllowedIPs = LAN_NET, 10.67.0.0/16
+Endpoint = SERVER_PUBLIC_ADDRESS:SERVER_PUBLIC_PORT

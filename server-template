@@ -1,0 +1,5 @@
+[Peer]
+# COMMENT
+PublicKey = PUBLICKEY
+PresharedKey = CLIENT_PRESHAREDKEY
+AllowedIPs = CLIENT_IPADDRESS/32
