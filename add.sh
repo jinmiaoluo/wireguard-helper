@@ -22,10 +22,10 @@ NAME=$1
 read -r -p "你输入的用户名是 $NAME, 正确请按 Enter 否则请按 ctrl-c: " _tmp
 
 # 生成客户端私钥
-PRIVATE=$(wg genkey)
+CLIENT_PRIVATEKEY=$(wg genkey)
 
 # 生成客户端公钥
-PUBLICKEY=$(echo -n "$PRIVATE" | wg pubkey)
+PUBLICKEY=$(echo -n "${CLIENT_PRIVATEKEY}" | wg pubkey)
 
 # 生成客户端预分享密钥
 CLIENT_PRESHAREDKEY=$(wg genpsk)
@@ -40,7 +40,7 @@ CLIENT_IPADDRESS=$(echo -n 10.67."${RANDOMNUMBER1}"."${RANDOMNUMBER2}")
 
 # 生成客户端配置文件
 [[ -f client-template ]] && cp client-template "$NAME"/"$NAME".conf || exit 104
-sed -i -e s#CLIENT_PRIVATE#"${PRIVATE}"#g \
+sed -i -e s#CLIENT_PRIVATEKEY#"${CLIENT_PRIVATEKEY}"#g \
        -e s#CLIENT_IPADDRESS#"${CLIENT_IPADDRESS}"#g \
        -e s#CLIENT_PRESHAREDKEY#"${CLIENT_PRESHAREDKEY}"#g \
        "$NAME"/"$NAME".conf
@@ -50,7 +50,7 @@ sed -i -e s#CLIENT_PRIVATE#"${PRIVATE}"#g \
   sed -e s#PUBLICKEY#"${PUBLICKEY}"#g \
       -e s#COMMENT#"${NAME}"#g \
       -e s#CLIENT_IPADDRESS#"${CLIENT_IPADDRESS}"#g \
-      -e s#CLIENT_PRESHAREDKEY#${CLIENT_PRESHAREDKEY}#g \
+      -e s#CLIENT_PRESHAREDKEY#"${CLIENT_PRESHAREDKEY}"#g \
       server-template >> server.conf || exit 104
 
 # 生成二维码
