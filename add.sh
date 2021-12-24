@@ -61,3 +61,6 @@ zip ./"$NAME"/"$NAME".zip ./"$NAME"/"$NAME".conf ./"$NAME"/"$NAME".png &>/dev/nu
 
 qrencode -t ansiutf8 -r ./"$NAME"/"$NAME".conf
 echo "配置添加完成, 见 $NAME 文件夹或直接扫描上面的二维码"
+
+# 重启服务端进程
+systemctl restart wg-quick@server

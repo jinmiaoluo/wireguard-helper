@@ -40,3 +40,6 @@ awk "/$NAME/ {print NR-1 \",\" NR+3 \"d\"}" server.conf | sed -i -f - server.con
 
 # 删除用户文件夹
 rm -rf "$NAME"
+
+# 重启服务端进程
+systemctl restart wg-quick@server
