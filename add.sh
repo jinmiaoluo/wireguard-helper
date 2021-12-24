@@ -25,7 +25,7 @@ read -r -p "你输入的用户名是 $NAME, 正确请按 Enter 否则请按 ctrl
 CLIENT_PRIVATEKEY=$(wg genkey)
 
 # 生成客户端公钥
-PUBLICKEY=$(echo -n "${CLIENT_PRIVATEKEY}" | wg pubkey)
+CLIENT_PUBLICKEY=$(echo -n "${CLIENT_PRIVATEKEY}" | wg pubkey)
 
 # 生成客户端预分享密钥
 CLIENT_PRESHAREDKEY=$(wg genpsk)
@@ -47,7 +47,7 @@ sed -i -e s#CLIENT_PRIVATEKEY#"${CLIENT_PRIVATEKEY}"#g \
 
 # 生成服务端配置文件
 [[ -f server-template ]] && \
-  sed -e s#PUBLICKEY#"${PUBLICKEY}"#g \
+  sed -e s#CLIENT_PUBLICKEY#"${CLIENT_PUBLICKEY}"#g \
       -e s#COMMENT#"${NAME}"#g \
       -e s#CLIENT_IPADDRESS#"${CLIENT_IPADDRESS}"#g \
       -e s#CLIENT_PRESHAREDKEY#"${CLIENT_PRESHAREDKEY}"#g \
