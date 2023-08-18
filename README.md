@@ -1,1 +1,1 @@
-[使用文档请阅读这篇文章](https://github.com/jinmiaoluo/blog/tree/main/example-11-intranet-vpn-solution)
+这是构建远程开发环境用的一套脚本。需要一台公网服务器作为入口，通过 FRP 和 WireGuard 实现开发环境内网的安全暴露。这样就可以在异地安全的访问开发环境内网中的所有基础服务（而不是简单的通过 FRP 公网暴露），比如：GitLab、Jira
